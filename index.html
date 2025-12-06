@@ -23,7 +23,8 @@
             --font-video: "pf-videotext", sans-serif; 
             
             --spacing-section: 120px;
-            --border-radius: 20px;
+            --border-radius: 20px; /* Für Karten */
+            --btn-radius: 10px;    /* Für Buttons */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -69,13 +70,14 @@
         h2 {
             font-size: clamp(1.8rem, 3.5vw, 2.8rem);
             color: var(--color-text-dark);
+            line-height: 1.2; 
         }
 
         h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             line-height: 1.4;
-            text-align: left;
+            text-align: left; /* Global links für die Karten */
         }
 
         p {
@@ -93,30 +95,32 @@
             margin-right: auto;
         }
 
-        /* Highlight Farben */
+        /* Farb-Highlights */
         .highlight { color: var(--color-primary-teal); }
         .highlight-yellow { color: var(--color-primary-yellow); }
 
-        /* --- NEU: VIDEO TEXT OUTLINES --- */
-        
-        /* 1. Standard: Weiß mit schwarzer Outline (für helle Hintergründe) */
+        .headline-dot {
+            color: var(--color-primary-yellow);
+            font-style: normal;
+        }
+
+        /* VIDEO TEXT OUTLINE STYLE */
         .highlight-outline {
             font-family: var(--font-video);
             font-weight: 400;
             font-style: normal;
-            color: var(--color-white); 
-            -webkit-text-stroke: 1px #000; /* Schwarze Kontur */
+            color: var(--color-white);
+            -webkit-text-stroke: 1px #000; 
             text-shadow: 2px 2px 0px rgba(0,0,0,0.1); 
             letter-spacing: 2px;
         }
-
-        /* 2. Inverted: Schwarz mit weißer Outline (für dunkle Hintergründe) */
+        
         .highlight-outline-inverse {
             font-family: var(--font-video);
             font-weight: 400;
             font-style: normal;
-            color: #000000; /* Schwarze Füllung */
-            -webkit-text-stroke: 1px #fff; /* Weiße Kontur */
+            color: #000000; 
+            -webkit-text-stroke: 1px #fff; 
             letter-spacing: 2px;
         }
 
@@ -129,11 +133,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
             z-index: 1000;
             transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
         .logo {
@@ -171,7 +175,8 @@
         .btn {
             display: inline-block;
             padding: 15px 35px;
-            background-color: var(--color-primary-teal);
+            background-color: rgba(80, 80, 80, 0.4); 
+            backdrop-filter: blur(10px); 
             color: white;
             text-decoration: none;
             font-family: var(--font-headline);
@@ -179,26 +184,34 @@
             font-size: 1.1rem; 
             text-transform: lowercase;
             letter-spacing: 1px;
-            border-radius: 30px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            border: none;
+            border-radius: var(--btn-radius); 
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1); 
             cursor: pointer;
         }
 
         .btn:hover {
-            transform: scale(1.05);
-            background-color: #466e7a;
+            transform: scale(1.02);
+            background-color: rgba(80, 80, 80, 0.7); 
+            border-color: rgba(255,255,255,0.4);
         }
 
         .btn-secondary {
             background-color: transparent;
             border: 2px solid var(--color-primary-yellow);
             color: var(--color-text-dark);
+            border-radius: var(--btn-radius);
+        }
+        
+        #cta .btn-secondary {
+            color: white; 
+            border-color: white;
         }
 
         .btn-secondary:hover {
             background-color: var(--color-primary-yellow);
             color: white;
+            border-color: var(--color-primary-yellow);
         }
 
         /* --- SECTIONS ALLGEMEIN --- */
@@ -232,9 +245,9 @@
 
         /* --- PAINPOINTS --- */
         #painpoints {
-            background-color: #f5f5f7;
+            background-image: url('Background-Box3_L.jpg'); 
+            background-size: cover;
             text-align: center;
-            /* background-image: url('background-Painpoints.jpg'); background-size: cover; */
         }
 
         .painpoint-grid {
@@ -245,7 +258,7 @@
         }
 
         .painpoint-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: var(--border-radius);
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
@@ -259,7 +272,8 @@
         /* --- SOLUTION --- */
         #solution {
             text-align: center;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px); 
         }
         
         .feature-grid {
@@ -272,9 +286,9 @@
 
         .feature-item {
             padding: 30px;
-            border: 1px solid #eee;
+            border: 1px solid rgba(0,0,0,0.05);
             border-radius: var(--border-radius);
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.7); 
         }
         
         .feature-icon {
@@ -285,7 +299,7 @@
 
         /* --- HOW IT WORKS --- */
         #how-it-works {
-            background-color: rgba(255,255,255,0.9);
+            background-color: rgba(255,255,255,0.8);
         }
 
         .step {
@@ -294,7 +308,7 @@
             gap: 40px;
             margin-bottom: 80px;
             max-width: 900px;
-            border-left: 1px solid #eee;
+            border-left: 1px solid rgba(0,0,0,0.1);
             padding-left: 40px;
             text-align: left;
         }
@@ -311,7 +325,7 @@
 
         /* --- USE CASES --- */
         #use-cases {
-            background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(245,245,247,0.8) 100%);
         }
 
         .case-grid {
@@ -322,7 +336,7 @@
         }
 
         .case-card {
-            background: white;
+            background: rgba(255,255,255,0.95);
             padding: 50px;
             border-radius: var(--border-radius);
             position: relative;
@@ -365,14 +379,12 @@
 
         /* --- CTA --- */
         #cta {
-            background-color: var(--color-text-dark);
+            background-color: rgba(29, 29, 31, 0.95);
             color: white;
             text-align: center;
         }
         
-        /* Überschreiben der allgemeinen h2 Farbe für den CTA Bereich, 
-           da sonst der highlight-outline-inverse in schwarz auf schwarz liegen würde */
-        #cta h2 { color: white; } 
+        #cta h2 { color: white; }
         #cta p { color: #ccc; }
 
         .cta-options {
@@ -454,7 +466,7 @@
 
     <section id="hero">
         <div class="container reveal">
-            <h1>manche situationen<br>brauchen mehr als<br>nur <span class="highlight-outline">gute absichten</span>.</h1>
+            <h1>manche situationen<br>brauchen mehr als<br>nur <span class="highlight-outline">gute absichten</span><span class="headline-dot">.</span></h1>
             <p>Peaceflow ist dein smarter Begleiter – für Gespräche, die verbinden, statt zu trennen. Wann immer du ihn brauchst. Wo immer du gerade stehst.</p>
             <br>
             <p style="font-weight: 700; color: var(--color-text-dark);">Stell dir vor: Klarheit, wo Chaos war. Verbindung, wo Spannung war.</p>
@@ -465,8 +477,8 @@
 
     <section id="painpoints">
         <div class="container reveal">
-            <h2>konflikte sind <span class="highlight-outline">komplex</span>.</h2>
-            <p class="section-intro">Frust? Überlastung? Sackgasse? Ob im Team, in der Partnerschaft oder mit dir selbst.</p>
+            <h2>konflikte sind <span class="highlight-outline">komplex</span><span class="headline-dot">.</span></h2>
+            <p class="section-intro">Frust? Überlastung? Sackgasse? Ob im Team,</br> in der Partnerschaft oder mit dir selbst.</p>
             
             <div class="painpoint-grid">
                 <div class="painpoint-card">
@@ -487,7 +499,7 @@
 
     <section id="solution">
         <div class="container reveal">
-            <h2>peaceflow ist dein <br><span class="highlight-outline">smarter begleiter</span>.</h2>
+            <h2>peaceflow ist dein <br><span class="highlight-outline">smarter begleiter</span><span class="headline-dot">.</span></h2>
             <p class="section-intro">Dein digitaler Sparringspartner, wenn du mitten im Konflikt steckst, ein Gespräch vorbereitest oder dich selbst besser verstehen willst.</p>
 
             <div class="feature-grid">
@@ -509,7 +521,7 @@
             </div>
             
             <div style="margin-top: 80px; text-align: center;">
-                <h3>führungskraft oder hr?</h3>
+                <h3 style="text-align: center;">führungskraft oder hr?</h3>
                 <p class="section-intro">Peaceflow hilft, Krisen zu entschärfen, bevor sie Flächenbrände werden. Kein Ersatz für Profis – sondern ihr digitaler Kollege.</p>
             </div>
         </div>
@@ -517,7 +529,7 @@
 
     <section id="how-it-works">
         <div class="container reveal">
-            <h2>wie peaceflow <span class="highlight-outline">funktioniert</span></h2>
+            <h2>wie peaceflow <span class="highlight-outline">funktioniert</span><span class="headline-dot">.</span></h2>
             <p class="section-intro">Du erzählst. Peaceflow versteht. Und begleitet dich Schritt für Schritt.</p>
             <br><br>
 
@@ -557,7 +569,7 @@
 
     <section id="use-cases">
         <div class="container reveal">
-            <h2 style="text-align: center; margin-bottom: 60px;">peaceflow <span class="highlight-outline">in action</span></h2>
+            <h2 style="text-align: center; margin-bottom: 60px;">peaceflow <span class="highlight-outline">in action</span><span class="headline-dot">.</span></h2>
             <div class="case-grid">
                 
                 <div class="case-card">
@@ -613,13 +625,13 @@
                 <div class="cta-box">
                     <h3>experten</h3>
                     <p style="margin-bottom: 20px;">Ich will Peaceflow kennenlernen.</p>
-                    <a href="#" class="btn btn-secondary" style="color: white; border-color: white;">demo buchen</a>
+                    <a href="#" class="btn btn-secondary">demo buchen</a>
                 </div>
 
                 <div class="cta-box">
                     <h3>unternehmen</h3>
                     <p style="margin-bottom: 20px;">Lösungen für Zusammenarbeit.</p>
-                    <a href="#" class="btn btn-secondary" style="color: white; border-color: white;">kontakt</a>
+                    <a href="#" class="btn btn-secondary">kontakt</a>
                 </div>
             </div>
         </div>
@@ -627,15 +639,16 @@
 
     <footer>
         <div class="container">
-            <h3 style="color: white; font-size: 1.2rem; margin-bottom: 20px;">peaceflow & aict group</h3>
-            <p style="max-width: 600px; margin: 0 auto; color: #666;">
-                Teil einer größeren Bewegung. Für eine Welt, in der Konflikte transformiert werden.
+            <img src="AICT_Logo_BW_BlackBG.png" alt="AICT Group Logo" style="max-width: 450px; margin-bottom: 20px; display: inline-block;">
+            
+               <p style="max-width: 600px; margin: 0 auto; color: #BBB;">
+                Peaceflow ist Teil einer größeren Bewegung. Für eine Welt, in der Konflikte transformiert werden.
                 Amplified Intelligence for Conflict Transformation.
             </p>
             <br>
-            <a href="#">Mehr über die AICT Group erfahren</a>
+            <a href="https://aict.group">Mehr über die AICT Group erfahren</a>
             <br><br>
-            <p style="font-size: 0.7rem;">&copy; 2025 peaceflow. All rights reserved.</p>
+            <p style="font-size: 0.7rem; color: #999;">&copy; 2025 peaceflow. All rights reserved.</p>
         </div>
     </footer>
 
